@@ -1,21 +1,20 @@
 :root {
-  --danger: #db324d;
-  --anchor: #41424c;
-  --flint: #adadc9;
+  --danger: #DB324D;
+  --anchor: #41424C;
+  --flint: #ADADC9;
 }
-
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-
 body {
-  background-color: #f2f2f2;
+  background-color: #F2F2F2;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: Arial, sans-serif;
 }
 .container {
   min-width: 350px;
@@ -23,7 +22,6 @@ body {
   margin: auto;
   padding: 20px;
 }
-
 form {
   background-color: #828080;
   padding: 20px 20px;
@@ -31,23 +29,18 @@ form {
   flex-direction: column;
   gap: 20px;
 }
-
 .text-right {
   text-align: right;
 }
-
 .w-max {
   width: 100%;
 }
-
 .p-15 {
   padding: 15px;
 }
-
 .text-1 {
   font-size: 2rem;
 }
-
 input {
   outline: none;
 }
@@ -57,27 +50,19 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
-
 input[type="number"] {
   -moz-appearance: textfield; /* Firefox */
 }
-
 .flex {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
 .buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
   grid-gap: 15px;
-  /* height: 500px; */
-}
-
-.buttons > div:last-child {
-  grid-column: 3 / span 2;
 }
 button {
   border: none;
@@ -86,26 +71,30 @@ button {
   outline: none;
   cursor: pointer;
   font-size: 1.5rem;
-  background-color: #fff;
-  color: #000;
+  background-color: white;
+  color: black;
   transition: all 0.3s ease;
   width: 100%;
 }
-
 .danger {
-  background-color: var(--danger);
+  background-color: #DB324D;
   color: white;
 }
-
 .primary {
-  background-color: var(--anchor);
+  background-color: #41424C;
   color: white;
 }
 .secondary {
-  background-color: var(--flint);
+  background-color: #ADADC9;
   color: white;
 }
-
 .tex-white {
   color: white;
+}
+.numpad {
+  background-color: #41424C;
+  color: white;
+}
+#clear {
+  background-color: #6262F4;
 }
