@@ -43,4 +43,9 @@ function changeSign() {
     input.value = -input.value;
   }
 
-  
+// Function to add a decimal point to the input if necessary
+function addDecimal() {
+    if (input.value.includes('.') === false) {
+      input.value += '.';
+    }
+  }
