@@ -14,3 +14,10 @@ function addNumber(number) {
 function addOperator(operator) {
     input.value += operator;
   }
+
+// Function to display result and calculate the current expression
+function calculateResult() {
+    lastResult.textContent = input.value ;
+    input.value = eval(input.value);
+  }
+  
