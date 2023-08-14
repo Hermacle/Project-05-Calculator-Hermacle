@@ -26,3 +26,9 @@ function calculateResult() {
 function calculatePercentage() {
     input.value = eval(input.value) / 100;
   }
+
+// Function to reset result
+function clearAll() {
+    input.value = '';
+  }
+  
