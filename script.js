@@ -21,3 +21,8 @@ function calculateResult() {
     input.value = eval(input.value);
   }
   
+  
+// Function to calculate the percentage of the current expression
+function calculatePercentage() {
+    input.value = eval(input.value) / 100;
+  }
