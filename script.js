@@ -38,4 +38,9 @@ function clearLast() {
   }
 
 
+// Function to toggle the sign of the input
+function changeSign() {
+    input.value = -input.value;
+  }
+
   
