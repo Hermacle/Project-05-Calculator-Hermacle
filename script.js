@@ -9,3 +9,8 @@ const lastResult = document.querySelector('p');
 function addNumber(number) {
     input.value += number;
   }
+
+// Function to add an operator to the input
+function addOperator(operator) {
+    input.value += operator;
+  }
