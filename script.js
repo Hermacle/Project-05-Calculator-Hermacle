@@ -3,7 +3,7 @@ import { calculate } from './calculator.js';
 
 const input = document.getElementById('input');
 const buttons = document.querySelectorAll('button');
-const lastResult = document.querySelector('p');
+const paragraph = document.querySelector('p');
 
 // Function to add a number to the input
  
@@ -12,19 +12,22 @@ function addNumber(number) {
     if (input.value === '0') {
         // Replace '0' with the new number
         input.value = number;
-        lastResult.textContent += number;
+        paragraph.textContent = number;
     } else {
         // Add the new number to the existing input
         input.value += number;
-        lastResult.textContent += number;
+        paragraph.textContent += number;
     }
 }
 
-
 // Display result and calculate the current expression
 function calculateResult() {
-    lastResult.textContent = input.value + " = " + eval(input.value) ;
-    input.value = eval(input.value);
+    input.value = eval(paragraph.textContent);
+    if(eval(paragraph.textContent)=='Infinity'){
+        input.value = 'Erreur !';
+    }
+    paragraph.textContent = paragraph.textContent + ' = ';
+    
 }
 
 // Function to calculate the percentage of the current expression
@@ -35,16 +38,18 @@ function calculatePercentage() {
 // Reset result
 function clearAll() {
     input.value = '';
-    lastResult.textContent = '';
+    paragraph.textContent = '';
 }
 
 // Delete the last character from the input
 function clearLast() {
     input.value = input.value.slice(0, -1);
+    paragraph.textContent = paragraph.textContent.slice(0, -1);
 }
 
 // Function to toggle the sign of the input
 function changeSign() {
+    paragraph.textContent = - paragraph.textContent;
     input.value = -input.value;
 }
 
@@ -52,6 +57,7 @@ function changeSign() {
 function addDecimal() {
     if (input.value.includes('.') === false) {
         input.value += '.';
+        paragraph.textContent += '.';
     }
 }
 
@@ -71,27 +77,34 @@ buttons.forEach(button => {
 
             // Check that the input is not empty
             if (input.value !== '') {
-                const lastInput = input.value.slice(-1);
+                const lastInput = paragraph.textContent.slice(-1);
                 if (lastInput !== '+' && lastInput !== '-' && lastInput !== '*' && lastInput !== '/') {
                     switch (buttonValue) {
                         case '×':
-                            input.value += '*';
+                            paragraph.textContent += ' '+'*'+' ';
+                            input.value = '';
                             event.preventDefault();
                             break;
                         case '÷':
-                            input.value += '/';
+                            paragraph.textContent += ' '+'/'+' ';
+                            input.value = '';
                             event.preventDefault();
                             break;
                         case '+':
-                            input.value += '+';
+                            paragraph.textContent += ' '+'+'+' ';
+                            input.value = '';
                             event.preventDefault();
                             break;
                         case '-':
-                            input.value += '-';
+                            paragraph.textContent += ' '+'-'+' ';
+                            input.value = '';
                             event.preventDefault();
                             break;
                         case '%':
                             calculatePercentage();
+                            if (lastInput !== '%') {
+                                paragraph.textContent += ' %';
+                            }
                             event.preventDefault();
                             break;
                         case 'AC':
@@ -103,8 +116,14 @@ buttons.forEach(button => {
                             event.preventDefault();
                             break;
                         case '=':
-                            calculateResult();
-                            event.preventDefault();
+                            if (lastInput == '%'){
+                                calculatePercentage()
+                                event.preventDefault();
+                            }else{
+                                calculateResult();
+                                event.preventDefault();
+                            }
+
                             break;
                         case '+/-':
                             changeSign();
