@@ -5,6 +5,9 @@ const input = document.getElementById('input');
 const buttons = document.querySelectorAll('button');
 const paragraph = document.querySelector('p');
 
+
+let expression = ''; //current expression
+
 // Function to add a number to the input
  
 function addNumber(number) {
@@ -13,17 +16,19 @@ function addNumber(number) {
         // Replace '0' with the new number
         input.value = number;
         paragraph.textContent = number;
+        expression = number;
     } else {
         // Add the new number to the existing input
         input.value += number;
         paragraph.textContent += number;
+        expression += number;
     }
 }
 
 // Display result and calculate the current expression
 function calculateResult() {
-    input.value = eval(paragraph.textContent);
-    if(eval(paragraph.textContent)=='Infinity'){
+    input.value = eval(expression);
+    if(eval(expression)=='Infinity'){
         input.value = 'Erreur !';
     }
     paragraph.textContent = paragraph.textContent + ' = ';
@@ -39,18 +44,21 @@ function calculatePercentage() {
 function clearAll() {
     input.value = '';
     paragraph.textContent = '';
+    expression = '';
 }
 
 // Delete the last character from the input
 function clearLast() {
     input.value = input.value.slice(0, -1);
     paragraph.textContent = paragraph.textContent.slice(0, -1);
+    expression = expression.slice(0, -1);
 }
 
 // Function to toggle the sign of the input
 function changeSign() {
     paragraph.textContent = - paragraph.textContent;
     input.value = -input.value;
+    expression = -expression;
 }
 
 // Function to add a decimal point to the input if necessary
@@ -58,6 +66,7 @@ function addDecimal() {
     if (input.value.includes('.') === false) {
         input.value += '.';
         paragraph.textContent += '.';
+        expression += '.';
     }
 }
 
@@ -81,22 +90,26 @@ buttons.forEach(button => {
                 if (lastInput !== '+' && lastInput !== '-' && lastInput !== '*' && lastInput !== '/') {
                     switch (buttonValue) {
                         case '×':
-                            paragraph.textContent += ' '+'*'+' ';
+                            paragraph.textContent += ' '+'×'+' ';
+                            expression += ' '+'*'+' ';
                             input.value = '';
                             event.preventDefault();
                             break;
                         case '÷':
-                            paragraph.textContent += ' '+'/'+' ';
+                            paragraph.textContent += ' '+'÷'+' ';
+                            expression += ' '+'/'+' ';
                             input.value = '';
                             event.preventDefault();
                             break;
                         case '+':
                             paragraph.textContent += ' '+'+'+' ';
+                            expression += ' '+'+'+' ';
                             input.value = '';
                             event.preventDefault();
                             break;
                         case '-':
                             paragraph.textContent += ' '+'-'+' ';
+                            expression += ' '+'-'+' ';
                             input.value = '';
                             event.preventDefault();
                             break;
