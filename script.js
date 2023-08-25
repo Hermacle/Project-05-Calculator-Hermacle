@@ -37,7 +37,7 @@ function calculateResult() {
 
 // Function to calculate the percentage of the current expression
 function calculatePercentage() {
-  input.value = eval(input.value) / 100;
+  input.value = eval(expression) / 100;
 }
 
 // Reset result
@@ -116,7 +116,7 @@ buttons.forEach(button => {
             case '%':
               calculatePercentage();
               if (lastInput !== '%') {
-                paragraph.textContent += ' %';
+                paragraph.textContent = paragraph.textContent + ' ' + '%';
               }
               event.preventDefault();
               break;
